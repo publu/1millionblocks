@@ -8,6 +8,11 @@ import { tutorialAction, tutorialPainter } from './tutorial'
 import * as constant from './constant'
 import { startAnimate, endAnimate } from './animateFuncs'
 
+import celerx from './celerx.js'
+
+
+celerx.ready();
+
 window.TowerGame = (option = {}) => {
   const {
     width,
@@ -22,13 +27,32 @@ window.TowerGame = (option = {}) => {
     height,
     soundOn
   })
+
   const pathGenerator = (path) => `./assets/${path}`
 
   game.addImg('background', pathGenerator('background.png'))
   game.addImg('hook', pathGenerator('hook.png'))
-  game.addImg('blockRope', pathGenerator('block-rope.png'))
-  game.addImg('block', pathGenerator('block.png'))
-  game.addImg('block-perfect', pathGenerator('block-perfect.png'))
+
+  game.addImg('blockRope-1', pathGenerator('block-1-rope.png'))
+  game.addImg('block-1', pathGenerator('block-1.png'))
+  game.addImg('block-perfect-1', pathGenerator('block-1-perfect.png'))
+
+  game.addImg('blockRope-2', pathGenerator('block-2-rope.png'))
+  game.addImg('block-2', pathGenerator('block-2.png'))
+  game.addImg('block-perfect-2', pathGenerator('block-2-perfect.png'))
+
+  game.addImg('blockRope-3', pathGenerator('block-3-rope.png'))
+  game.addImg('block-3', pathGenerator('block-3.png'))
+  game.addImg('block-perfect-3', pathGenerator('block-3-perfect.png'))
+
+  game.addImg('blockRope-4', pathGenerator('block-2-rope.png'))
+  game.addImg('block-4', pathGenerator('block-2.png'))
+  game.addImg('block-perfect-4', pathGenerator('block-2-perfect.png'))
+
+  game.addImg('blockRope-5', pathGenerator('block-2-rope.png'))
+  game.addImg('block-5', pathGenerator('block-2.png'))
+  game.addImg('block-perfect-5', pathGenerator('block-2-perfect.png'))
+
   for (let i = 1; i <= 8; i += 1) {
     game.addImg(`c${i}`, pathGenerator(`c${i}.png`))
   }

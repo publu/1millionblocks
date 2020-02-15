@@ -44,7 +44,6 @@ const swing = (instance, engine, time) => {
 
 const checkBlockOut = (instance, engine) => {
   if (instance.status === constant.rotateLeft) {
-    // 左转 要等右上角消失才算消失
     if (instance.y - instance.width >= engine.height) {
       instance.visible = false
       instance.status = constant.out
@@ -204,7 +203,8 @@ export const blockAction = (instance, engine, time) => {
 }
 
 const drawSwingBlock = (instance, engine) => {
-  const bl = engine.getImg('blockRope')
+  const n = (Number(String(instance.name.split("_")[1]).charAt(0)) %5)+1;
+  const bl = engine.getImg('blockRope-'+n)
   engine.ctx.drawImage(
     bl, instance.weightX - instance.calWidth
     , instance.weightY
@@ -216,7 +216,10 @@ const drawSwingBlock = (instance, engine) => {
 
 const drawBlock = (instance, engine) => {
   const { perfect } = instance
-  const bl = engine.getImg(perfect ? 'block-perfect' : 'block')
+  console.log(instance.name)
+  const n = (Number(String(instance.name.split("_")[1]).charAt(0)) %5)+1;
+  console.log("drawBlock" +n)
+  const bl = engine.getImg(perfect ? 'block-perfect-'+n : 'block-'+n)
   engine.ctx.drawImage(bl, instance.x, instance.y, instance.width, instance.height)
 }
 

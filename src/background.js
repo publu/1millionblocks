@@ -56,9 +56,9 @@ export const backgroundLinearGradient = (engine) => {
     [105, 230, 240],
     [90, 190, 240],
     [85, 100, 190],
-    [55, 20, 35],
-    [75, 25, 35],
-    [25, 0, 10]
+    [52, 119, 237],
+    [52, 119, 237],
+    [52, 119, 237]
   ]
   const offsetHeight = engine.getVariable(constant.bgLinearGradientOffset, 0)
   if (checkMoveDown(engine)) {

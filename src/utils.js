@@ -1,4 +1,6 @@
 import * as constant from './constant'
+import celerx from './celerx.js'
+
 
 export const checkMoveDown = engine =>
   (engine.checkTimeMovement(constant.moveDownMovement))
@@ -110,11 +112,14 @@ export const touchEventHandler = (engine) => {
   }
   engine.removeInstance('tutorial')
   engine.removeInstance('tutorial-arrow')
-  const b = engine.getInstance(`block_${engine.getVariable(constant.blockCount)}`)
-  if (b && b.status === constant.swing) {
-    engine.setTimeMovement(constant.hookUpMovement, 500)
-    b.status = constant.beforeDrop
-  }
+
+  celerx.onStart(function(engine){
+    const b = engine.getInstance(`block_${engine.getVariable(constant.blockCount)}`)
+      if (b && b.status === constant.swing) {
+        engine.setTimeMovement(constant.hookUpMovement, 500)
+        b.status = constant.beforeDrop
+      }
+  })
 }
 
 export const addSuccessCount = (engine) => {
@@ -134,11 +139,19 @@ export const addFailedCount = (engine) => {
   const failed = lastFailedCount + 1
   engine.setVariable(constant.failedCount, failed)
   engine.setVariable(constant.perfectCount, 0)
+  const { setGameScore, successScore, perfectScore } = engine.getVariable(constant.gameUserOption)
+  const lastPerfectCount = engine.getVariable(constant.perfectCount, 0)
+  const lastGameScore = engine.getVariable(constant.gameScore)
+  const perfect = isPerfect ? lastPerfectCount + 1 : 0
+  const score = lastGameScore + (successScore || 25) + ((perfectScore || 25) * perfect)
+
   if (setGameFailed) setGameFailed(failed)
+
   if (failed >= 3) {
     engine.pauseAudio('bgm')
     engine.playAudio('game-over')
     engine.setVariable(constant.gameStartNow, false)
+    celerx.submitScore(score)
   }
 }
 

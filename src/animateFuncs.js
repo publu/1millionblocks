@@ -18,7 +18,7 @@ export const endAnimate = (engine) => {
   const threeFiguresOffset = Number(successCount) > 99 ? engine.width * 0.1 : 0
 
   drawYellowString(engine, {
-    string: '层',
+    string: 'pts',
     size: engine.width * 0.06,
     x: (engine.width * 0.24) + threeFiguresOffset,
     y: engine.width * 0.12,
@@ -90,7 +90,7 @@ export const startAnimate = (engine) => {
     const block = new Instance({
       name: `block_${engine.getVariable(constant.blockCount)}`,
       action: blockAction,
-      painter: blockPainter
+      painter: blockPainter,
     })
     engine.addInstance(block)
   }
