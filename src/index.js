@@ -9,8 +9,10 @@ import * as constant from './constant'
 import { startAnimate, endAnimate } from './animateFuncs'
 
 import celerx from './celerx.js'
-
-
+var start =false;
+celerx.onStart(() => {
+  start=true;
+});
 celerx.ready();
 
 window.TowerGame = (option = {}) => {
@@ -138,6 +140,5 @@ window.TowerGame = (option = {}) => {
     game.setTimeMovement(constant.tutorialMovement, 500)
     game.setVariable(constant.gameStartNow, true)
   }
-
   return game
 }
