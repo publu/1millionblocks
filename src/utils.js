@@ -112,14 +112,11 @@ export const touchEventHandler = (engine) => {
   }
   engine.removeInstance('tutorial')
   engine.removeInstance('tutorial-arrow')
-
-  celerx.onStart(function(engine){
-    const b = engine.getInstance(`block_${engine.getVariable(constant.blockCount)}`)
+  const b = engine.getInstance(`block_${engine.getVariable(constant.blockCount)}`)
       if (b && b.status === constant.swing) {
         engine.setTimeMovement(constant.hookUpMovement, 500)
         b.status = constant.beforeDrop
-      }
-  })
+  }
 }
 
 export const addSuccessCount = (engine) => {
@@ -142,7 +139,7 @@ export const addFailedCount = (engine) => {
   const { setGameScore, successScore, perfectScore } = engine.getVariable(constant.gameUserOption)
   const lastPerfectCount = engine.getVariable(constant.perfectCount, 0)
   const lastGameScore = engine.getVariable(constant.gameScore)
-  const perfect = isPerfect ? lastPerfectCount + 1 : 0
+  const perfect = 0
   const score = lastGameScore + (successScore || 25) + ((perfectScore || 25) * perfect)
 
   if (setGameFailed) setGameFailed(failed)
